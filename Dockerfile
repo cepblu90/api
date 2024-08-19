@@ -1,5 +1,9 @@
 FROM python:3.12.4-alpine
 
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+
 COPY requirements.txt /temp/requirements.txt
 
 COPY api /api

@@ -21,6 +21,21 @@ services:
   database:
     image: postgres:16-alpine
     environment:
-      - POSTGRES_DB = dbname
-      - POSTGRES_USER= dbuser
+      - POSTGRES_DB=dbname
+      - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web-app
+
+
+volumes:
+  postgres_data:
